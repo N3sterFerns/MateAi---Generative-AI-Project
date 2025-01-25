@@ -3,6 +3,7 @@ import morgan from "morgan"
 import connectDB from "./db/db.js"
 import userRouter from "./routes/user.route.js"
 import projectRouter from "./routes/project.route.js"
+import aiRouter from "./routes/ai.route.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -19,6 +20,7 @@ connectDB()
 
 app.use("/users", userRouter)
 app.use("/project", projectRouter)
+app.use("/mateai", aiRouter)
 
 export default app;
 

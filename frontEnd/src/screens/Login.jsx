@@ -21,7 +21,7 @@ const Login = () => {
             
             localStorage.setItem('token', res.data.token)
             setUser(res.data.userExists)
-            // console.log(res.data);
+            console.log(res.data.userExists);
             
             navigate("/")            
 

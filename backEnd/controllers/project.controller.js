@@ -52,6 +52,11 @@ export const addUserToProject = async (req,res)=>{
 
         const {projectId, users} = req.body;
 
+        users.forEach(user => {
+            console.log(typeof user);
+        });
+        
+
         const loggedInUser = await userModel.findOne({email: req.user.email})
 
         const project = await addUsersToProject({projectId: projectId, users ,userId: loggedInUser._id})
