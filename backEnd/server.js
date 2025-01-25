@@ -62,13 +62,11 @@ io.on('connection', (socket) => {
         if(isAiPresent){
             const prompt = message.replace("@ai", "");
 
-            let geminiResponse = await generateResult(prompt)
+            let aiResponse = await generateResult(prompt)
+            console.log(aiResponse);
+            
 
-            const modifiedResponse = geminiResponse.replaceAll("```", "").replace("json", "");
-            console.log(modifiedResponse)    
-            const finalResponse = JSON.parse(modifiedResponse)
-
-            io.emit("project-message", {message: finalResponse?.text, sender: {email:"@mateai"}})
+            io.emit("project-message", {message: aiResponse, sender: {email:"@mateai"}})
             return 
         }
 
