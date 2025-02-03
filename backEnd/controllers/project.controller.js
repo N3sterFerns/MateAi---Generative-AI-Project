@@ -1,5 +1,5 @@
 import Project from "../models/project.model.js";
-import { createProject, getAllProjectByUserId, addUsersToProject, getProjectById } from "../services/project.service.js";
+import { createProject, getAllProjectByUserId, addUsersToProject, getProjectById, deleteProjectById } from "../services/project.service.js";
 import {validationResult} from "express-validator"
 import userModel from "../models/user.model.js"
 
@@ -88,3 +88,15 @@ export const getProjectId = async (req,res)=>{
 }
 
 
+export const removeProject = async (req, res)=>{
+    try {
+        const {id} = req.params;
+
+        await deleteProjectById({projectId: id})
+        
+        res.status(200).json({message: "Project Successfully deleted"})
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({error: "Something went wrong"})
+    }
+}

@@ -26,5 +26,6 @@ router.put("/add-user",
 
 router.get("/get-project/:projectId", verifyAuth, projectController.getProjectId)
 
+router.get("/remove/:id", verifyAuth, projectController.removeProject)
 
 export default router;

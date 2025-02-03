@@ -19,7 +19,8 @@ router.post("/login",
 router.get("/profile", verifyAuth, userController.userProfile)
 router.get("/logout", verifyAuth, userController.logOut)
 
-router.get("/all", verifyAuth, userController.getAllUsersController)
+// router.get("/all", verifyAuth, userController.getAllUsersController)
+router.get("/all/search", verifyAuth, userController.getAllUsersController)
 
 
 export default router;

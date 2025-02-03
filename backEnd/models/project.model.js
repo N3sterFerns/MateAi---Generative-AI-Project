@@ -15,7 +15,7 @@ const projectSchema = new mongoose.Schema({
             ref: "user"
         }
     ]
-})
+}, {timestamps: true})
 
 
 const Project = mongoose.model("project", projectSchema)

@@ -84,12 +84,28 @@ export const logOut = async (req, res)=>{
     }
 }
 
+// export const getAllUsersController = async (req, res)=>{
+//     try {
+
+//         const loggedInUser = await userModel.findOne({email: req.user.email})
+
+//         const allUsers = await getUsers({userId: loggedInUser.id});
+//         return res.status(200).json({users: allUsers})
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
 export const getAllUsersController = async (req, res)=>{
     try {
 
         const loggedInUser = await userModel.findOne({email: req.user.email})
 
-        const allUsers = await getUsers({userId: loggedInUser.id});
+        if(!loggedInUser) return;
+
+        const {email} = req.query;
+
+        const allUsers = await getUsers({userId: loggedInUser._id, search: email});
         return res.status(200).json({users: allUsers})
     } catch (error) {
         console.log(error);

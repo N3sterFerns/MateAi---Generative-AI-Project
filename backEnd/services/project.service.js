@@ -78,13 +78,20 @@ export const getProjectById = async ({projectId})=>{
         throw new Error("Project Id is required")
     }
     
-    
     const project = await Project.findOne({_id: projectId}).populate("users")
-    
     
     return project;
     
 }
 
+
+
+export const deleteProjectById = async ({projectId})=>{
+    if(!mongoose.Types.ObjectId.isValid(projectId)){
+        throw new Error("Project not found")
+    }
+
+    await Project.findOneAndDelete(projectId)
+}
 
 

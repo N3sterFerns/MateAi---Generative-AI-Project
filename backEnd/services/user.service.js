@@ -25,9 +25,22 @@ export const createUser = async ({email, password})=>{
     }
 }
 
-export const getUsers = async({userId})=>{
+// export const getUsers = async({userId})=>{
+//     const users = await userModel.find({
+//         _id: {$ne: userId}
+//     })
+//     return users
+// }
+ 
+export const getUsers = async({userId, search})=>{
+    
+    if (!search) {
+        throw new Error("Search string is required.");
+    }
+
     const users = await userModel.find({
-        _id: {$ne: userId}
+        _id: {$ne: userId},
+        email: {$regex: search, $options: "i"}
     })
     return users
 }
